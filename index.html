@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="infoApp">
 
 <head>
   <script data-require="angular.js@1.6.5" data-semver="1.6.5" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
@@ -8,9 +8,14 @@
 </head>
 
 <body>
-  <h1>Hello Plunker!</h1>
+  <h1>Hello Angular!</h1>
   {{ 843 / 27 }}
-  <div ng-app>{{ 843 / 42 }}</div>
+  <div ng-controller="InfoController">
+    <div>{{error}}</div>
+  <label for="firstName">Username: {{ user.login }}</label><br>
+  <label for="lastName">Location: {{ user.location }}</label><br>
+  <img ng-src="{{user.avatar_url}}">
+  </div>
 </body>
 
 </html>

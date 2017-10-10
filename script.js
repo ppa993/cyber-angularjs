@@ -1,21 +1,16 @@
 (function() {
-    var createWorker = function() {
+    var app = angular.module('infoApp', []);
 
-        var task1 = function() {
-            console.log('doing job 1');
-        };
-        var task2 = function() {
-            console.log('doing job 2');
+    app.controller('InfoController', function($scope, $http) {
+        var onCompleted = function(response) {
+            $scope.user = response.data;
         };
 
-        return {
-            job1: task1,
-            job2: task2
+        var onError = function(reason) {
+            $scope.error = "Could not retrieve the user because " + reason.message;
         };
-    };
 
-    var worker = createWorker();
-
-    worker.job1();
-    worker.job2();
-}());
+        $http.get("https://api.github.com/users/ppa993")
+            .then(onCompleted, onError);
+    })
+})();
